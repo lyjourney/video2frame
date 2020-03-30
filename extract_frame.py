@@ -28,7 +28,7 @@ class video:
         os.mkdir(self.dest_dir)
 
 
-    def video2frame(self):
+    def run(self):
         file_list = os.listdir(self.dir_name)
 
         for file in file_list:
@@ -100,4 +100,4 @@ if __name__ == "__main__":
     video = video(dir_name = args.extract_dir, dest_dir = args.dest_dir, \
                 stride = args.stride)
     
-    video.video2frame()
+    video.run()

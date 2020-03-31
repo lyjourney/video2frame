@@ -1,9 +1,3 @@
-Python package list
--------------------
-* cv2
-* shutil
-* tqdm
-
 Getting Started
 ---------------
 ```
@@ -31,3 +25,9 @@ video2frame/
   └ video2.avi
   └ video3.mp4
   └ ...
+```
+Python package list
+-------------------
+* cv2
+* shutil
+* tqdm

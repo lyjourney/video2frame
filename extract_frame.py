@@ -7,10 +7,11 @@ import argparse
 
 class video:
 
-    def __init__(self, dir_name, dest_dir, stride):
+    def __init__(self, dir_name, dest_dir, stride, blanks):
         self.dir_name = dir_name
         self.dest_dir = dest_dir
         self.stride = stride
+        self.blanks = blanks
         self.preprocessing()
 
     def preprocessing(self):
@@ -19,7 +20,7 @@ class video:
             print(f"Save directory : {os.getcwd()}/{self.dest_dir}\n")
         else:
             print("\n'" + self.dir_name+ "' is not exists.")
-            print("Please check your extract_dir.\n")
+            print("Please check your sour_dir.\n")
             sys.exit()
 
         if os.path.exists(self.dest_dir):
@@ -69,6 +70,11 @@ class video:
             if index % self.stride:
                 continue
 
+            if self.blanks is not None:
+                for blank in self.blanks:
+                    x1, y1, x2, y2 = blank
+                    frame[y1:y2, x1:x2] = 0
+                
             index = capture.get(cv2.CAP_PROP_POS_FRAMES)
             frame_name = \
                 f"{file_name.split()[-1].split('.')[-2]}_{str(int(index))}.jpg"
@@ -86,18 +92,20 @@ class video:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--extract_dir", default = "video_files",
-                        help="directory name that have video files", type=str)
+    parser.add_argument("--sour_dir", default = "video_files", type=str,
+                        help="directory name that have video files")
 
-    parser.add_argument("--dest_dir", default = "frames",
-                        help="destination directory name", type=str)
+    parser.add_argument("--dest_dir", default = "frames", type=str,
+                        help="destination directory name")
 
-    parser.add_argument("--stride", default = 1,
-                        help="how many frames to skip", type=int)
+    parser.add_argument("--stride", default = 1, type=int,
+                        help="how many frames to skip")
+
+    parser.add_argument("--blanks", nargs='+', type=int, action='append',
+                        help="format: left, top, right, bottom")
 
     args = parser.parse_args()
-
-    video = video(dir_name = args.extract_dir, dest_dir = args.dest_dir, \
-                stride = args.stride)
+    video = video(dir_name = args.sour_dir, dest_dir = args.dest_dir, \
+                stride = args.stride, blanks = args.blanks)
     
     video.run()

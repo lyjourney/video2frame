@@ -1,3 +1,9 @@
+Python package list
+-------------------
+* cv2
+* shutil
+* tqdm
+
 Getting Started
 ---------------
 ```
@@ -5,12 +11,6 @@ $ git clone https://github.com/lyjourney/video2frame.git
 $ cd video2frame
 $ python3 extract_frame.py [--sour_dir <name>] [--dest_dir <name>] [--stride <num>] [--blanks <left, top, right, bottom>]
 ```
-Python package list
--------------------
-* cv2
-* shutil
-* tqdm
-
 Usage example
 -------------
 ```

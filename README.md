@@ -20,11 +20,13 @@ Directory
 ---------
 ```
 video2frame/
-└─ video_files/
-    ├─ video1.mp4
-    ├─ video2.avi
-    ├─ video3.mp4
-    └─ ...
+┣━ README.md
+┣━ extract_frame.py
+┗━ video_files/
+    ┣━ video1.mp4
+    ┣━ video2.avi
+    ┣━ video3.mp4
+    ┗━ ...
 ```
 Python package list
 -------------------
